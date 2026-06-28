@@ -26,6 +26,12 @@ $authController = new AuthController();
 $studentController = new StudentController();
 $jwtHandler = new JwtHandler();
 
+if (empty($segments)) {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['message' => 'API ready']);
+    exit;
+}
+
 $body = json_decode(file_get_contents('php://input'), true) ?: [];
 
 function respondNotFound(): void
